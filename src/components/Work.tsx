@@ -16,10 +16,10 @@ const Work = () => {
       
       <div className={styles.gallery}>
         <div className={styles.galleryItem}>
-           <Image src="/images/work1.png" alt="Work 1" fill className={styles.img} />
+           <Image src="/look2/EBI05027.jpg" alt="Work 1" fill className={styles.img} />
         </div>
         <div className={styles.galleryItem}>
-           <Image src="/images/work2.png" alt="Work 2" fill className={styles.img} />
+           <Image src="/look3/EBI05040.jpg" alt="Work 2" fill className={styles.img} />
         </div>
       </div>
 

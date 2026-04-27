@@ -8,7 +8,7 @@ const About = () => {
         <div className={styles.imageSide}>
           <div className={styles.imageWrapper}>
             <Image 
-              src="/images/about.png" 
+              src="/look1/EBI05007.jpg" 
               alt="Judith Lesley Portrait" 
               fill 
               className={styles.image}
@@ -19,7 +19,7 @@ const About = () => {
           <span className={styles.subtitle}>ABOUT</span>
           <h2 className={styles.title}>JUDITH LESLEY</h2>
           <p className={styles.quote}>
-            "Ready to bring authentic, mature character to commercial and lifestyle campaigns."
+            &quot;Ready to bring authentic, mature character to commercial and lifestyle campaigns.&quot;
           </p>
           <div className={styles.description}>
             <p>

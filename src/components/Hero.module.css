@@ -76,6 +76,7 @@
 
 .heroImage {
   object-fit: cover;
+  object-position: top center;
 }
 
 .reflection {
@@ -95,6 +96,43 @@
 
 .reflectImage {
   object-fit: cover;
+  object-position: top center;
+}
+
+.innerNext {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: slideInNext 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.innerPrev {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: slideInPrev 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes slideInNext {
+  0% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInPrev {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .blurBand {
