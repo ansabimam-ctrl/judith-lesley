@@ -86,6 +86,34 @@
   color: #fff;
 }
 
+.emailContainer {
+  margin-top: 3rem;
+  width: 100%;
+  text-align: left;
+}
+
+.emailLink {
+  font-size: 1rem;
+  color: var(--foreground);
+  text-decoration: none;
+  letter-spacing: var(--tracking-wide);
+  font-weight: 300;
+  border-bottom: 1px solid var(--foreground);
+  padding-bottom: 0.25rem;
+  transition: opacity 0.3s ease;
+}
+
+.emailLink:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .emailContainer {
+    text-align: center;
+    margin-top: 2rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .container {
     flex-direction: column;

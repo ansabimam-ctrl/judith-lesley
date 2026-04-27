@@ -32,6 +32,12 @@ const Contact = () => {
             scrolling="no"
           />
           
+          <div className={styles.emailContainer}>
+            <a href="mailto:stewartmorris@rocketmail.com" className={styles.emailLink}>
+              stewartmorris@rocketmail.com
+            </a>
+          </div>
+          
           <Script 
             src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"
             strategy="afterInteractive"
