@@ -24,7 +24,7 @@ const Contact = () => {
           <iframe
             id="JotFormIFrame-261165444532050"
             title="Form Contact"
-            allowTransparency={true}
+            allowtransparency="true"
             allow="geolocation; microphone; camera; fullscreen; payment"
             src="https://form.jotform.com/261165444532050"
             frameBorder="0"
