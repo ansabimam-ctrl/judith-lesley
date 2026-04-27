@@ -243,6 +243,9 @@
   .statTag {
     padding: 0.4rem 0.8rem;
     font-size: 0.6rem;
+    background: rgba(255, 255, 255, 0.75);
+    color: #111;
+    backdrop-filter: blur(4px);
   }
 
   .looksPagination {
