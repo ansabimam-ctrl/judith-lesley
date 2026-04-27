@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from './Hero.module.css';
 
@@ -99,6 +99,8 @@ const Hero = () => {
   const [currentLook, setCurrentLook] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
 
   const stats = [
     { label: 'AGE', value: '70' },
@@ -116,6 +118,35 @@ const Hero = () => {
   
   const currentImages = LOOK_IMAGES[currentLook] || Array(15).fill('/images/hero.png');
   const totalImages = currentImages.length;
+
+  const openLightbox = (index: number) => {
+    setLightboxImageIndex(index);
+    setIsLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setIsLightboxOpen(false);
+  };
+
+  const nextLightboxImage = () => {
+    setLightboxImageIndex((prev) => (prev + 1) % totalImages);
+  };
+
+  const prevLightboxImage = () => {
+    setLightboxImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isLightboxOpen) return;
+      if (e.key === 'ArrowRight') nextLightboxImage();
+      if (e.key === 'ArrowLeft') prevLightboxImage();
+      if (e.key === 'Escape') closeLightbox();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen, totalImages]);
 
   const handleNext = () => {
     setDirection('next');
@@ -157,9 +188,9 @@ const Hero = () => {
 
         <div className={styles.slideTrack}>
           {/* Previous Slide */}
-          <div className={`${styles.slide} ${styles.sideSlide}`}>
+          <div className={`${styles.slide} ${styles.sideSlide}`} onClick={() => openLightbox(idx1)}>
             <div key={`left-${idx1}`} className={direction === 'next' ? styles.innerNext : styles.innerPrev}>
-              <Image src={currentImages[idx1]} alt={`Look ${currentLook + 1} - Image ${idx1 + 1}`} fill className={styles.heroImage} />
+              <Image src={currentImages[idx1]} alt={`Look ${currentLook + 1} - Image ${idx1 + 1}`} fill className={`${styles.heroImage} ${styles.clickableImage}`} />
               <div className={styles.reflection}>
                 <Image src={currentImages[idx1]} alt="" fill className={styles.reflectImage} />
               </div>
@@ -168,13 +199,13 @@ const Hero = () => {
           </div>
 
           {/* Current Slide */}
-          <div className={styles.slide}>
+          <div className={styles.slide} onClick={() => openLightbox(idx2)}>
             <div key={`center-${idx2}`} className={direction === 'next' ? styles.innerNext : styles.innerPrev}>
               <Image 
                 src={currentImages[idx2]} 
                 alt={`Look ${currentLook + 1} - Image ${idx2 + 1}`}
                 fill 
-                className={styles.heroImage}
+                className={`${styles.heroImage} ${styles.clickableImage}`}
                 priority
               />
               <div className={styles.reflection}>
@@ -184,9 +215,9 @@ const Hero = () => {
           </div>
 
           {/* Next Slide */}
-          <div className={`${styles.slide} ${styles.sideSlide}`}>
+          <div className={`${styles.slide} ${styles.sideSlide}`} onClick={() => openLightbox(idx3)}>
             <div key={`right-${idx3}`} className={direction === 'next' ? styles.innerNext : styles.innerPrev}>
-              <Image src={currentImages[idx3]} alt={`Look ${currentLook + 1} - Image ${idx3 + 1}`} fill className={styles.heroImage} />
+              <Image src={currentImages[idx3]} alt={`Look ${currentLook + 1} - Image ${idx3 + 1}`} fill className={`${styles.heroImage} ${styles.clickableImage}`} />
               <div className={styles.reflection}>
                 <Image src={currentImages[idx3]} alt="" fill className={styles.reflectImage} />
               </div>
@@ -222,6 +253,40 @@ const Hero = () => {
             ))}
           </div>
         </div>
+        {isLightboxOpen && (
+          <div className={styles.lightbox}>
+            <div className={styles.lightboxBg} onClick={closeLightbox}></div>
+            
+            <button className={styles.closeBtn} onClick={closeLightbox} aria-label="Close Lightbox">
+              &times;
+            </button>
+            
+            <div className={styles.lightboxCounter}>
+              {(lightboxImageIndex + 1).toString().padStart(2, '0')} / {totalImages.toString().padStart(2, '0')}
+            </div>
+            
+            <button className={styles.lightboxNavLeft} onClick={prevLightboxImage} aria-label="Previous Image">
+              &#8249;
+            </button>
+            
+            <div className={styles.lightboxImageWrapper}>
+              <Image 
+                src={currentImages[lightboxImageIndex]} 
+                alt={`Lightbox - Image ${lightboxImageIndex + 1}`}
+                fill
+                className={styles.lightboxImage}
+              />
+            </div>
+            
+            <button className={styles.lightboxNavRight} onClick={nextLightboxImage} aria-label="Next Image">
+              &#8250;
+            </button>
+            
+            <div className={styles.lightboxFooter}>
+              ESC TO CLOSE - ARROWS TO NAVIGATE
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
