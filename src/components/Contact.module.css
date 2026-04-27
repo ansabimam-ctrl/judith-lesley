@@ -1,22 +1,29 @@
 .contact {
-  background: var(--background);
-  padding: 10rem 4rem;
-  display: flex;
-  justify-content: center;
+  background: #fff;
+  padding: 0;
 }
 
 .container {
-  width: 100%;
-  max-width: 800px;
   display: flex;
-  justify-content: center;
+  min-height: 100vh;
+}
+
+.imageSide {
+  flex: 1;
+  position: relative;
+}
+
+.img {
+  object-fit: cover;
+  object-position: top center;
 }
 
 .formSide {
-  width: 100%;
+  flex: 1;
+  padding: 8rem 6rem;
+  background: var(--background);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
 }
 
@@ -25,14 +32,14 @@
   letter-spacing: var(--tracking-extra-wide);
   color: var(--text-muted);
   margin-bottom: 1.5rem;
-  text-align: center;
+  text-align: left;
 }
 
 .title {
   font-size: 2.5rem;
   margin-bottom: 4rem;
   font-weight: 300;
-  text-align: center;
+  text-align: left;
   letter-spacing: var(--tracking-wide);
 }
 
