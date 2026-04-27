@@ -53,8 +53,8 @@
   position: relative;
   width: 33.33%;
   height: 72vh;
-  /* Specific height for images */
   z-index: 5;
+  background: #fff;
 }
 
 .sideSlide {
@@ -75,8 +75,8 @@
 }
 
 .heroImage {
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center;
 }
 
 .reflection {
@@ -95,8 +95,8 @@
 }
 
 .reflectImage {
-  object-fit: cover;
-  object-position: top center;
+  object-fit: contain;
+  object-position: center;
 }
 
 .innerNext {
