@@ -14,9 +14,6 @@ const Contact = () => {
   return (
     <section id="contact" className={styles.contact}>
       <div className={styles.container}>
-        <div className={styles.imageSide}>
-           <Image src="/look4/a (2).jpg" alt="Contact Portrait" fill className={styles.img} />
-        </div>
         <div className={styles.formSide}>
           <span className={styles.subtitle}>GET IN TOUCH</span>
           <h2 className={styles.title}>LET&apos;S WORK TOGETHER</h2>
